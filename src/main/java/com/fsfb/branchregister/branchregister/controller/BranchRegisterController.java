@@ -27,6 +27,11 @@ public class BranchRegisterController {
     @Autowired
     private BranchExcelDataService branchExcelDataService;
 
+    @GetMapping("/healthcheck")
+    public ResponseEntity<CommonResponse> healthcheck() {
+        ResponseEntity<CommonResponse> res = new ResponseEntity<CommonResponse>(new CommonResponse(true, "Server up & running!"), HttpStatus.OK);
+        return res;
+    }
     @PostMapping("/addUser")
     public ResponseEntity<CommonResponse> addUsers(@Valid @RequestBody List<User> body) {
         return branchRegisterService.addUsers(body);
